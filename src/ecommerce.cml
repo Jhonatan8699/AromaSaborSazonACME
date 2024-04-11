@@ -1,0 +1,34 @@
+ContextMap AcmeEcommerceMap{
+    contains VentasContext
+    contains PedidosContext
+    contains DeliveryContext
+    contains ReservaContext
+    contains GestionAutorizacionAutenticacionContext
+
+    /*Cooperacion*/
+    VentasContext [P] <-> [P] DeliveryContext
+    PedidosContext [P] <-> [P] VentasContext
+    ReservaContext [P] <-> [P] PedidosContext
+
+    /*Conformista*/
+    VentasContext [CF] <- [PL] GestionAutorizacionAutenticacionContext
+
+    /*Anti-corruption layer*/
+
+    /*Open-Host service*/
+}
+
+BoundedContext VentasContext{
+}
+
+BoundedContext PedidosContext{
+}
+
+BoundedContext DeliveryContext{
+}
+
+BoundedContext ReservaContext{
+}
+
+BoundedContext GestionAutorizacionAutenticacionContext{
+}
