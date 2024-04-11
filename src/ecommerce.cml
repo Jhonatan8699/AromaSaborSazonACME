@@ -1,14 +1,19 @@
 ContextMap AcmeEcommerceMap{
     contains VentasContext
-    contains PedidosContext
-    contains DeliveryContext
+    contains VentasMesaContext
+    contains VentasDeliveryContext
+    contains ComprobanteContext
+    contains LogisticaDeliveryContext
     contains ReservaContext
     contains GestionAutorizacionAutenticacionContext
 
+    /*Shared kernel*/
+    VentasContext [SK] <-> [SK] VentasMesaContext
+    VentasContext [SK]<-> [SK] VentasDeliveryContext
+
     /*Cooperacion*/
-    VentasContext [P] <-> [P] DeliveryContext
-    PedidosContext [P] <-> [P] VentasContext
-    ReservaContext [P] <-> [P] PedidosContext
+    
+   
 
     /*Conformista*/
     VentasContext [CF] <- [PL] GestionAutorizacionAutenticacionContext
@@ -21,13 +26,19 @@ ContextMap AcmeEcommerceMap{
 BoundedContext VentasContext{
 }
 
-BoundedContext PedidosContext{
+BoundedContext VentasMesaContext{
 }
 
-BoundedContext DeliveryContext{
+BoundedContext VentasDeliveryContext{
+}
+
+BoundedContext ComprobanteContext{
 }
 
 BoundedContext ReservaContext{
+}
+
+BoundedContext LogisticaDeliveryContext{
 }
 
 BoundedContext GestionAutorizacionAutenticacionContext{
